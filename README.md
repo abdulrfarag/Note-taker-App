@@ -9,7 +9,7 @@ The following video shows the web application's appearance and functionality:
 HTML, CSS, JAVASCRIPT, express, node.js
 
 ## github repo
-
+https://github.com/abdulrfarag/Note-taker-App
 
 ## heroku repo
 
