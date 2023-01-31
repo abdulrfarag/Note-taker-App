@@ -16,3 +16,32 @@ class Store {
         return writeFileAsync('db/db.json', JSON.stringify(note))
     }
 
+    getNotes() {
+        return this.read().then((data) => {
+            return JSON.parse(data)
+        })
+    }
+
+    addNote(note) {
+        note.id = generateId()
+
+        return this.getNotes().then((currentNotes) => {
+            currentNotes.push(note)
+            return currentNotes
+        }).then((updatedNotes) => {
+            return this.write(updatedNotes)
+        }).then(() => {
+            return note
+        })
+
+    }
+    deleteNote(id) {
+        return this.getNotes().then(notes => {
+            return notes.filter((note) => { return note.id !== id })
+        }).then(filteredNotes => {
+            return this.write(filteredNotes)
+        })
+    }
+}
+
+module.exports = new Store();
